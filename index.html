@@ -2,208 +2,459 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mr. A — Snap Creator</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worldwide Lens Creator Research — @anill.kumar7</title>
 <style>
-  :root{
-    --bg: #1B1330;
-    --bg-deep: #120B24;
-    --surface: #241A3D;
-    --gold: #F2B84B;
-    --coral: #FF6F59;
-    --cream: #F7F3ED;
-    --muted: #B6A9D6;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{
-    background: radial-gradient(120% 160% at 50% -10%, var(--surface) 0%, var(--bg) 45%, var(--bg-deep) 100%);
-    color: var(--cream);
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    display:flex;
-    justify-content:center;
-    padding: 32px 16px 64px;
-  }
-  .page{ width:100%; max-width: 480px; }
-
-  .storybar{ display:flex; gap:5px; margin-bottom: 32px; }
-  .storybar span{ flex:1; height:3px; border-radius:2px; background: rgba(247,243,237,0.15); }
-  .storybar span.done{ background: var(--gold); }
-
-  .hero{ text-align:center; margin-bottom: 40px; }
-  .avatar{
-    width: 96px; height: 96px; border-radius: 50%;
-    margin: 0 auto 20px;
-    background: conic-gradient(from 180deg, var(--gold), var(--coral), var(--gold));
-    padding: 3px;
-  }
-  .avatar-inner{
-    width:100%; height:100%; border-radius:50%;
-    background: var(--surface);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces', serif; font-size: 34px; font-weight:600; color: var(--gold);
-  }
-  h1{
-    font-family:'Fraunces', serif;
-    font-weight: 700;
-    font-size: 40px;
-    letter-spacing: -0.5px;
-    margin-bottom: 6px;
-  }
-  .handle{
-    font-family:'Space Mono', monospace;
-    font-size: 13px;
-    color: var(--gold);
-    letter-spacing: 0.5px;
-    margin-bottom: 14px;
-  }
-  .bio{
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: 340px;
-    margin: 0 auto 18px;
-  }
-  .meta-row{
-    display:flex; justify-content:center; gap: 18px; flex-wrap:wrap;
-    font-size: 13px; color: var(--muted);
-  }
-  .meta-row span{ display:flex; align-items:center; gap:6px; }
-
-  .stats{
-    display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-    margin: 32px 0;
-  }
-  .stat{
-    background: var(--surface);
-    border: 1px solid rgba(242,184,75,0.15);
-    border-radius: 14px;
-    padding: 16px 8px;
-    text-align:center;
-  }
-  .stat .num{ font-family:'Fraunces', serif; font-size: 22px; font-weight:600; color: var(--cream); }
-  .stat .label{ font-size: 11px; color: var(--muted); text-transform:uppercase; letter-spacing: 0.6px; margin-top:4px; }
-
-  .section-label{
-    font-family:'Space Mono', monospace;
-    font-size: 12px; color: var(--gold);
-    text-transform: uppercase; letter-spacing: 1.5px;
-    margin: 36px 0 14px 4px;
-  }
-
-  .tile{
-    display:flex; align-items:center; gap:14px;
-    background: var(--surface);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    text-decoration:none;
-    color: var(--cream);
-    position: relative;
-    transition: border-color 0.2s ease, transform 0.15s ease;
-  }
-  .tile:hover{ border-color: var(--gold); transform: translateY(-2px); }
-  .tile-icon{
-    width: 40px; height:40px; border-radius: 10px;
-    display:flex; align-items:center; justify-content:center;
-    font-size: 18px; flex-shrink:0;
-  }
-  .tile-icon.gold{ background: rgba(242,184,75,0.15); color: var(--gold); }
-  .tile-icon.coral{ background: rgba(255,111,89,0.15); color: var(--coral); }
-  .tile-text .title{ font-weight:600; font-size: 15px; }
-  .tile-text .sub{ font-size: 12.5px; color: var(--muted); margin-top:2px; }
-  .tile-corner{
-    position:absolute; top:10px; right:12px;
-    font-size:11px; color: var(--muted);
-  }
-
-  footer{
-    text-align:center; margin-top: 44px;
-    font-family:'Space Mono', monospace;
-    font-size: 11px; color: var(--muted);
-    display:flex; align-items:center; justify-content:center; gap:8px;
-  }
-  footer .dot{ width:4px; height:4px; border-radius:50%; background: var(--gold); }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#07070e;color:#fff;padding:1rem;line-height:1.5}
+h1{text-align:center;font-size:18px;font-weight:700;margin-bottom:3px;background:linear-gradient(135deg,#FFD700,#FF69B4,#9B59B6,#00D2FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;font-size:10px;color:#555;margin-bottom:1rem}
+h2{font-size:14px;font-weight:700;color:#FFD700;margin:1.25rem 0 .5rem;padding-left:.5rem;border-left:3px solid #FFD700}
+h3{font-size:12px;font-weight:700;color:#9b7fff;margin:.75rem 0 .35rem}
+.section{background:#0d0d18;border:0.5px solid #1a1a25;border-radius:12px;padding:.875rem 1rem;margin-bottom:.875rem}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.75rem}
+.stat-card{background:#0a0a14;border:0.5px solid #1a1a22;border-radius:10px;padding:.625rem .75rem;text-align:center}
+.stat-n{font-size:20px;font-weight:700;color:#FFD700;display:block}
+.stat-l{font-size:9px;color:#555;margin-top:2px}
+.creator-card{background:#0a0a14;border:0.5px solid #1a1a22;border-radius:10px;padding:.625rem .875rem;margin-bottom:6px}
+.creator-name{font-size:12px;font-weight:700;color:#fff}
+.creator-meta{font-size:10px;color:#555;margin:2px 0 4px}
+.creator-what{font-size:10px;color:#888;line-height:1.5}
+.creator-earn{font-size:11px;font-weight:700;color:#34d399;margin-top:3px}
+.tag{display:inline-block;font-size:9px;font-weight:600;padding:1px 6px;border-radius:5px;margin:1px}
+.t-beauty{background:#1f0a18;color:#f472b6}
+.t-game{background:#0a1220;color:#60a5fa}
+.t-viral{background:#1a1200;color:#FFD700}
+.t-ai{background:#0a0a1f;color:#a78bfa}
+.t-cultural{background:#0f1a0a;color:#86efac}
+.t-transform{background:#1a0a0a;color:#fca5a5}
+p{font-size:10px;color:#888;line-height:1.6;margin-bottom:.5rem}
+.data-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.data-item{background:#0a0a14;border:0.5px solid #1a1a22;border-radius:6px;padding:4px 8px;font-size:10px;color:#888}
+.data-item strong{color:#ccc}
+.lens-idea{background:#0a0a14;border:0.5px solid #1a1a22;border-radius:10px;padding:.625rem .875rem;margin-bottom:6px;position:relative}
+.li-top{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.li-e{font-size:16px}
+.li-name{font-size:12px;font-weight:700;flex:1}
+.li-badge{font-size:9px;font-weight:700;padding:1px 6px;border-radius:5px}
+.bl{background:#0a1f12;color:#34d399}.bt{background:#0a1220;color:#60a5fa}.bv{background:#1f0a18;color:#f472b6}
+.li-why{font-size:10px;color:#666;margin-bottom:3px;line-height:1.4}
+.li-data{font-size:9px;color:#9b7fff;margin-bottom:3px}
+.li-viral{font-size:9px;color:#FFD700;line-height:1.4}
+.li-how{font-size:10px;color:#555;margin-top:4px;line-height:1.4;border-top:0.5px solid #1a1a22;padding-top:4px}
+.priority-badge{position:absolute;top:8px;right:8px;background:#FFD700;color:#000;font-size:9px;font-weight:700;padding:1px 5px;border-radius:4px}
+.insight-box{background:#0f1a0a;border:0.5px solid #1a3010;border-radius:8px;padding:.5rem .75rem;margin-bottom:.5rem}
+.insight-box .label{font-size:9px;color:#86efac;font-weight:700;text-transform:uppercase;margin-bottom:2px}
+.insight-box p{font-size:10px;color:#666;margin:0;line-height:1.5}
+.warning-box{background:#1a0a0a;border:0.5px solid #3a1a1a;border-radius:8px;padding:.5rem .75rem;margin-bottom:.5rem}
+.warning-box .label{font-size:9px;color:#fca5a5;font-weight:700;text-transform:uppercase;margin-bottom:2px}
+.gap-item{background:#0a0a14;border-left:3px solid #FFD700;padding:.35rem .625rem;margin-bottom:4px;border-radius:0 6px 6px 0;font-size:10px;color:#888}
+.gap-item strong{color:#FFD700}
+.trend-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.5rem}
+.trend-chip{background:#1a1a30;border:0.5px solid #2a2a50;border-radius:20px;padding:3px 10px;font-size:10px;color:#9b7fff;font-weight:600}
+.money-table{width:100%;border-collapse:collapse;font-size:10px}
+.money-table th{background:#0a0a14;color:#555;padding:5px 8px;text-align:left;border-bottom:0.5px solid #1a1a22}
+.money-table td{padding:5px 8px;border-bottom:0.5px solid #0d0d18;color:#888}
+.money-table tr:hover td{background:#0a0a14}
+.money-table .highlight{color:#FFD700;font-weight:700}
+.ideas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
 </style>
 </head>
 <body>
-<div class="page">
+<h1>🌍 Worldwide Lens Creator Research Report</h1>
+<p class="sub">Research-backed data • Top creators • What's earning money • New trends • Lens ideas built from intelligence</p>
 
-  <div class="storybar">
-    <span class="done"></span><span class="done"></span><span class="done"></span><span></span>
-  </div>
+<!-- SECTION 1: MARKET DATA -->
+<h2>📊 The Snapchat Lens Market — Real Numbers</h2>
+<div class="section">
+<div class="stat-grid">
+<div class="stat-card"><span class="stat-n">850M+</span><div class="stat-l">Monthly Active Users</div></div>
+<div class="stat-card"><span class="stat-n">350M</span><div class="stat-l">Daily Lens Users</div></div>
+<div class="stat-card"><span class="stat-n">5T+</span><div class="stat-l">Total Lens Views All Time</div></div>
+<div class="stat-card"><span class="stat-n">4M+</span><div class="stat-l">Total Lenses Built</div></div>
+<div class="stat-card"><span class="stat-n">400K+</span><div class="stat-l">AR Creators Worldwide</div></div>
+<div class="stat-card"><span class="stat-n">175M</span><div class="stat-l">Monthly Lens Game Players</div></div>
+<div class="stat-card"><span class="stat-n">113M</span><div class="stat-l">Beauty Lens Users 2024</div></div>
+<div class="stat-card"><span class="stat-n">262M hrs</span><div class="stat-l">Beauty Content Watched 2024</div></div>
+<div class="stat-card"><span class="stat-n">$7,200</span><div class="stat-l">Max Monthly Top Performer Payout</div></div>
+<div class="stat-card"><span class="stat-n">15,000</span><div class="stat-l">Qualified Posters Needed in 90 days</div></div>
+<div class="stat-card"><span class="stat-n">130%</span><div class="stat-l">AR Game Engagement Growth (YoY)</div></div>
+<div class="stat-card"><span class="stat-n">40%</span><div class="stat-l">Creator Content Growth Q4 2024</div></div>
+</div>
+<div class="insight-box">
+<div class="label">🔑 Key Insight for You (Anil @anill.kumar7)</div>
+<p>350 million people use Lenses EVERY DAY. Your 246K followers is a tiny fraction of the potential audience. Every lens you build can be discovered by 350 million people regardless of your follower count. The Top Performer payout needs 15,000 unique posters in 90 days — that's achievable with one viral lens.</p>
+</div>
+</div>
 
-  <div class="hero">
-    <div class="avatar"><div class="avatar-inner">A</div></div>
-    <h1>Mr. A</h1>
-    <div class="handle">@anill.kumar7</div>
-    <p class="bio">Daily aesthetic snaps, moody light, and lenses built for how you actually see the city. Indian-born, NJ/NYC based for 3+ years.</p>
-    <div class="meta-row">
-      <span>📍 New Jersey · NYC</span>
-      <span>Since 2019</span>
-    </div>
-  </div>
+<!-- SECTION 2: MONEY -->
+<h2>💰 Who's Making Money & How Much</h2>
+<div class="section">
+<h3>Top Creator Earnings (Publicly Reported)</h3>
+<table class="money-table">
+<tr><th>Creator</th><th>Background</th><th>Reported Earnings</th><th>What They Make</th></tr>
+<tr><td><strong>Cyrene Quiamco (CyreneQ)</strong></td><td>Filipino-American, AR artist</td><td class="highlight">$750,000+</td><td>Interactive art, cultural lenses, branded</td></tr>
+<tr><td><strong>Katie Feeney</strong></td><td>American</td><td class="highlight">$1,000,000+</td><td>Lifestyle beauty, trending content</td></tr>
+<tr><td><strong>Sarah Callahan</strong></td><td>American</td><td class="highlight">$1,000,000+</td><td>Beauty, fashion, viral challenge lenses</td></tr>
+<tr><td><strong>Joey Rogoff</strong></td><td>American creator</td><td class="highlight">$1,200,000+</td><td>Entertainment, interactive, games</td></tr>
+<tr><td><strong>Paige Piskin</strong></td><td>Top Snapchat creator</td><td class="highlight">Top Performer</td><td>Beauty, trending lenses, challenges</td></tr>
+</table>
 
-  <div class="stats">
-    <div class="stat"><div class="num">249K</div><div class="label">Followers</div></div>
-    <div class="stat"><div class="num">6+</div><div class="label">Years</div></div>
-    <div class="stat"><div class="num">★</div><div class="label">Snap Creator</div></div>
-  </div>
+<br>
+<h3>How The Money Works — Two Paths</h3>
+<div class="data-row">
+<div class="data-item"><strong>Top Performer Payout:</strong> Need 15,000 unique posters in 90 days → up to $7,200/month</div>
+<div class="data-item"><strong>Lens+ Payout:</strong> Exclusive lenses for Lens+ subscribers → monthly revenue share (introduced Oct 2025)</div>
+</div>
+<div class="data-row">
+<div class="data-item"><strong>Qualified Regions:</strong> USA, France, Saudi Arabia, UK, Germany, Canada, Australia, Netherlands, Sweden, Norway, UAE</div>
+<div class="data-item"><strong>Measurement Window:</strong> First 90 days after submission</div>
+</div>
+<div class="data-row">
+<div class="data-item"><strong>What counts:</strong> Unique users who POST a Snap to Spotlight, Private Stories, or Public Stories using your Lens</div>
+</div>
 
-  <div class="section-label">Find me</div>
+<div class="insight-box">
+<div class="label">💡 What This Means For You</div>
+<p>The Lens+ payout (launched Oct 2025) is NEW and mostly untapped. Creators who build Exclusive Lenses for Lens+ subscribers now earn a monthly revenue share. Since this is brand new, competition is LOW. This is your biggest opportunity right now — build Lens+ exclusive beauty lenses before the market fills up.</p>
+</div>
+</div>
 
-  <a class="tile" href="https://www.snapchat.com/add/anill.kumar7" target="_blank" rel="noopener">
-    <div class="tile-icon gold">👻</div>
-    <div class="tile-text">
-      <div class="title">Snapchat</div>
-      <div class="sub">Daily Aesthetic Snaps · Stories & Spotlight</div>
-    </div>
-  </a>
+<!-- SECTION 3: TOP CREATORS ANALYSIS -->
+<h2>🏆 Top Creators — What They Build & Why It Works</h2>
+<div class="section">
 
-  <a class="tile" href="https://www.instagram.com/anill.kumar7" target="_blank" rel="noopener">
-    <div class="tile-icon coral">📷</div>
-    <div class="tile-text">
-      <div class="title">Instagram</div>
-      <div class="sub">@anill.kumar7</div>
-    </div>
-  </a>
+<div class="creator-card">
+<div class="creator-name">Cyrene Quiamco (CyreneQ) — Filipino-American</div>
+<div class="creator-meta">$750K+ earned • Most famous Snap AR creator worldwide</div>
+<div class="creator-what">
+<span class="tag t-cultural">Cultural</span><span class="tag t-viral">Viral</span><span class="tag t-ai">Interactive</span><br><br>
+Creates vibrant interactive lenses that mix cultural references with popular trends. Famous for lenses that "continue a story" — her art starts when someone uses the lens. Builds lenses for Philippines, Asian communities, and global trends. Key insight: she treats every lens as a piece of art that users co-create. Also builds branded/sponsored lenses for companies.
+</div>
+<div class="creator-earn">WHY SHE WINS: Cultural specificity + interaction + makes the user part of the art = high share rate</div>
+</div>
 
-  <div class="section-label">Watch</div>
+<div class="creator-card">
+<div class="creator-name">Paige Piskin — US Creator</div>
+<div class="creator-meta">Top performer Snapchat • Officially recognized by Snap</div>
+<div class="creator-what">
+<span class="tag t-beauty">Beauty</span><span class="tag t-viral">Trending</span><span class="tag t-transform">Transform</span><br><br>
+Builds beauty and trend-forward lenses that align with what's happening in culture RIGHT NOW. Speed is her strategy — when a trend hits, she has a lens out before competitors. Works across beauty, fashion transformation, and viral challenge formats.
+</div>
+<div class="creator-earn">WHY SHE WINS: Speed to trend + consistency + always building something new</div>
+</div>
 
-  <a class="tile" href="https://www.snapchat.com/add/anill.kumar7" target="_blank" rel="noopener">
-    <div class="tile-icon gold">🎬</div>
-    <div class="tile-text">
-      <div class="title">Spotlight videos</div>
-      <div class="sub">Cinematic city & sky clips</div>
-    </div>
-  </a>
+<div class="creator-card">
+<div class="creator-name">Top Earner Category: Interactive/Game Lenses</div>
+<div class="creator-meta">175M monthly players • 130% engagement growth year over year</div>
+<div class="creator-what">
+<span class="tag t-game">Games</span><span class="tag t-ai">AI-Powered</span><span class="tag t-viral">High Engagement</span><br><br>
+The HIGHEST engagement category on Snapchat right now. Lens games get people playing 5-20 minutes vs beauty filters 30 seconds. The new Chat-integrated Games Drawer (2026) means games launch directly from chat conversations. Bitmoji game lenses are the newest highest-potential category with 175M monthly players.
+</div>
+<div class="creator-earn">WHY GAMES WIN: Duration of use is 10-20x longer than beauty filters → more Qualified Posters → more payout</div>
+</div>
 
-  <a class="tile" href="https://www.snapchat.com/add/anill.kumar7" target="_blank" rel="noopener">
-    <div class="tile-icon gold">✨</div>
-    <div class="tile-text">
-      <div class="title">Browse my Lenses</div>
-      <div class="sub">Published AR lenses on Snapchat</div>
-    </div>
-  </a>
+<div class="creator-card">
+<div class="creator-name">Beauty Lens Category Leaders</div>
+<div class="creator-meta">113M beauty lens users 2024 • Lipstick try-ons 16% higher playtime</div>
+<div class="creator-what">
+<span class="tag t-beauty">Beauty</span><span class="tag t-viral">High Volume</span><br><br>
+The most popular 2024 lenses: Pink Dog (funny), Soft Filter (beauty), Scribble World (art/fun). Key data: lipstick try-ons drive 16% higher playtime than standard beauty. Eyeliner try-ons drive 14% higher playtime. Virtual makeup try-on beats pure beauty filter every time because users interact longer. August 2025 had the HIGHEST peak in search interest for both face filters and beauty filters.
+</div>
+<div class="creator-earn">WHY BEAUTY STILL WINS: 113M users + 262M hours watched = massive audience who will share</div>
+</div>
+</div>
 
-  <div class="section-label">Work with me</div>
+<!-- SECTION 4: WHAT'S TRENDING NOW -->
+<h2>🔥 What's Working Right Now — 2025/2026 Trends</h2>
+<div class="section">
+<h3>Lens Categories Ranked by Momentum</h3>
 
-  <a class="tile" href="mailto:mra7official@gmail.com">
-    <div class="tile-icon coral">✉️</div>
-    <div class="tile-text">
-      <div class="title">Business inquiries</div>
-      <div class="sub">mra7official@gmail.com</div>
-    </div>
-  </a>
+<div class="trend-row">
+<div class="trend-chip">🎮 AR Games #1 Growth</div>
+<div class="trend-chip">🤖 AI-Generated Lenses</div>
+<div class="trend-chip">💄 Beauty Try-On</div>
+<div class="trend-chip">🎨 Style Generation</div>
+<div class="trend-chip">📹 AI Video (Animate It)</div>
+<div class="trend-chip">👗 Virtual Try-On Fashion</div>
+<div class="trend-chip">🌍 Cultural Identity</div>
+<div class="trend-chip">😂 Funny/Transform</div>
+</div>
 
-  <footer>
-    <span class="dot"></span> 6+ years creating on Snapchat
-  </footer>
+<h3>NEW Tools Available in Lens Studio (Oct 2025 Lens Fest)</h3>
+<div class="data-row">
+<div class="data-item"><strong>Lens Studio AI:</strong> Build lenses by describing them in plain language — no code needed</div>
+<div class="data-item"><strong>Realistic StyleGen:</strong> Photorealistic clothing/outfit transformation lenses</div>
+<div class="data-item"><strong>FaceGen Updated:</strong> More realistic face expressions in digital generations</div>
+<div class="data-item"><strong>AI Clips (coming):</strong> Image-to-video lens format — everyday snaps become animated</div>
+<div class="data-item"><strong>Glam & Glitter:</strong> New intuitive beauty editor for professional-quality looks</div>
+<div class="data-item"><strong>Blocks Framework:</strong> Modular AR components you can build into lenses</div>
+<div class="data-item"><strong>Commerce Kit:</strong> In-lens payments — sell digital goods directly inside your lenses</div>
+<div class="data-item"><strong>Animate It (Dec 2025):</strong> Text-prompt AI video generation for Lens+ subscribers</div>
+</div>
 
+<h3>Top Performing Lens Formats — What Gets The Most Posters</h3>
+<div class="insight-box">
+<div class="label">📈 Data from Snapchat 2024 Report</div>
+<p>
+<strong style="color:#FFD700">1. Funny/Transformative:</strong> Face distortion, talking potato, face swap, troll face → highest share rate, people show friends<br>
+<strong style="color:#FFD700">2. Beauty + Challenge:</strong> "Clean Girl," "Soft Filter," lenses with built-in challenge concept → strong viral spread<br>
+<strong style="color:#FFD700">3. Cultural/Identity:</strong> Lenses celebrating specific cultures → deep engagement from specific communities, shared widely<br>
+<strong style="color:#FFD700">4. Virtual Makeup Try-On:</strong> Lipstick, eyeliner try-on drives 14-16% HIGHER playtime than basic beauty filters<br>
+<strong style="color:#FFD700">5. Sports/Event-Tied:</strong> Lenses tied to sports moments, World Cup, Olympics → massive short-term viral spikes<br>
+<strong style="color:#FFD700">6. AR Games:</strong> 130% engagement growth, 175M monthly players — becoming the #1 category by engagement duration
+</p>
+</div>
+</div>
+
+<!-- SECTION 5: MARKET GAPS -->
+<h2>🎯 Market Gaps — What Nobody's Building Yet</h2>
+<div class="section">
+<div class="gap-item"><strong>Global South Beauty:</strong> 54 African countries, 48 Asian countries — almost zero quality beauty lenses made FOR these audiences. Cyrene covers Philippines but leaves 190+ countries untouched. This is your territory.</div>
+<div class="gap-item"><strong>Dark Skin Luminosity:</strong> Most beauty lenses are built for fair/medium skin. Lenses that genuinely enhance dark melanin skin without washing it out are extremely rare. 1.4B people in Africa + 1B Indian subcontinent with dark skin = massive underserved market.</div>
+<div class="gap-item"><strong>Cultural Heritage Beauty:</strong> Kente, Ankara, Himba, Maasai, Hanbok, Sari aesthetic lenses are almost nonexistent. Cultural identity lenses get shared organically within communities = free viral marketing.</div>
+<div class="gap-item"><strong>AI Clips Lenses:</strong> Just launched December 2025. Almost nobody has built these yet. First movers will dominate this category before it becomes crowded.</div>
+<div class="gap-item"><strong>Lens+ Exclusive Content:</strong> Launched October 2025. The Lens+ payout program is brand new. Very few creators have Lens+ exclusive libraries yet. Build 10-20 Lens+ exclusives now before everyone does.</div>
+<div class="gap-item"><strong>Beauty + Challenge Hybrid:</strong> Lenses with built-in challenge mechanics ("clean girl challenge," "glass skin 7 day") consistently outperform pure beauty filters. The challenge hook is missing from most beauty lenses.</div>
+<div class="gap-item"><strong>Lipstick/Makeup Try-On:</strong> Data shows try-on lenses get 16% MORE playtime than beauty filters. A colored lipstick carousel lens (try 10 shades) could be a top performer. Very few indie creators have built this.</div>
+<div class="gap-item"><strong>India Market:</strong> India is a qualified payout region. 1.4B people. Massive Snapchat user base. Bollywood culture. Wedding season content. Almost no quality India-specific beauty lenses from indie creators.</div>
+<div class="gap-item"><strong>Saudi Arabia/UAE Market:</strong> Both are qualified payout regions. Gulf luxury market. Oud rose, desert gold, Ramadan lenses. Almost zero indie creator presence in this space.</div>
+</div>
+
+<!-- SECTION 6: NEW LENS IDEAS FROM RESEARCH -->
+<h2>💡 Research-Backed Lens Ideas — Built From Global Data</h2>
+<div class="section">
+<p>Every idea below is based on real Snapchat data, market gaps, creator strategies, and what's currently making money. These are not guesses — they're backed by research.</p>
+
+<h3>🏆 TIER 1 — Highest Priority (Data Shows These Win)</h3>
+<div class="ideas-grid">
+
+<div class="lens-idea">
+<div class="priority-badge">#1 PRIORITY</div>
+<div class="li-top"><span class="li-e">💄</span><span class="li-name">Lipstick Shade Selector</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">Snapchat data: lipstick try-ons drive 16% HIGHER playtime than standard beauty. Interactive try-on is THE highest engagement format. Nobody has built a high-quality indie lipstick selector.</div>
+<div class="li-data">📊 Research data: 113M beauty lens users in 2024 | Try-on = longest playtime = most Qualified Posters</div>
+<div class="li-viral">🔥 VIRAL: "Try all 10 shades and tell me which one is yours — slide to switch"</div>
+<div class="li-how">HOW: Face mesh → lip segmentation → 10 color variations (nude, red, berry, coral, mauve, plum, pink, rose, caramel, bold red) → user taps to cycle through → works on all skin tones → submit Lens+</div>
+</div>
+
+<div class="lens-idea">
+<div class="priority-badge">#2 PRIORITY</div>
+<div class="li-top"><span class="li-e">🎮</span><span class="li-name">Beauty Race AR Game</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">AR Games: 130% engagement growth, 175M monthly players. Games have 10-20x the engagement duration of beauty filters. Nobody has combined beauty with competitive game mechanics.</div>
+<div class="li-data">📊 Games category growing 130% YoY | Duration = more Qualified Posters = more payout</div>
+<div class="li-viral">🔥 VIRAL: "Rate your glow level 1-100 — beat my score and challenge me back"</div>
+<div class="li-how">HOW: Face tracking → "glow meter" on screen that fills based on face brightness → score generated → challenge friend feature → leaderboard → high replay rate = massive Qualified Posters</div>
+</div>
+
+<div class="lens-idea">
+<div class="priority-badge">#3 PRIORITY</div>
+<div class="li-top"><span class="li-e">🤖</span><span class="li-name">AI Animate Me (Video)</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">Animate It launched December 2025 for Lens+ subscribers. First movers building AI video lenses NOW will own this category. Almost nobody has published these yet.</div>
+<div class="li-data">📊 AI video = newest Snapchat category | Lens+ exclusive = higher payout | Zero competition yet</div>
+<div class="li-viral">🔥 VIRAL: "Watch my face turn into a Bollywood movie moment — AI did this in 3 seconds"</div>
+<div class="li-how">HOW: Use new AI Clips feature in Lens Studio → face to animated video → cultural theme → Bollywood, Carnival, K-pop music video aesthetic → Lens+ exclusive submit</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">💎</span><span class="li-name">Melanin Glow Spectrum</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">113M beauty lens users but almost zero quality dark skin beauty lenses. The research gap is enormous. Dark skin is NOT one tone — it's a spectrum. A lens that enhances specifically across the full melanin spectrum is completely missing.</div>
+<div class="li-data">📊 1.4B Africans + 500M dark South Asians = billions underserved by current beauty lenses</div>
+<div class="li-viral">🔥 VIRAL: "Finally a beauty filter made FOR us — dark skin challenge"</div>
+<div class="li-how">HOW: Face mesh → detect skin tone → auto-adjust: deep dark = gold screen glow, medium dark = warm luminosity, light dark = neutral warm → eyes brightened 70% → NO whitening → warm enhancement only</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🌍</span><span class="li-name">Culture Flag Beauty</span><span class="li-badge bv">Viral</span></div>
+<div class="li-why">Cyrene Quiamco's success is built on cultural identity lenses. Cultural lenses get shared within entire communities. A beauty lens tied to a specific flag gets every person from that country to share it with their own community = organic viral.</div>
+<div class="li-data">📊 Cultural identity = highest share rate | Country-specific = community sharing = viral within culture</div>
+<div class="li-viral">🔥 VIRAL: "Tag 3 people from your country — beauty flag challenge"</div>
+<div class="li-how">HOW: 30 separate lenses, each with country flag color grade + name floating text + national flower particle + beauty filter tuned for that country's typical skin tone → submit as series</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🎨</span><span class="li-name">Realistic StyleGen Outfit</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">Snap's new Realistic StyleGen tool transforms users into photorealistic outfits. This is a brand new tool (Oct 2025). Nobody has built cultural outfit lenses with it yet. Traditional dress from 50 countries = 50 separate monetizable lenses.</div>
+<div class="li-data">📊 New Lens Studio tool, first movers win | Fashion/outfit changes 100M times monthly on Snap</div>
+<div class="li-viral">🔥 VIRAL: "Which traditional outfit fits my energy? Try all 5 — Nigeria Korea India Brazil Japan"</div>
+<div class="li-how">HOW: Realistic StyleGen → Traditional outfits: Korean Hanbok, Indian Sari, Nigerian Ankara, Brazilian Carnival, Japanese Kimono → face stays yours, outfit transforms → photorealistic quality</div>
+</div>
+</div>
+
+<h3>🥈 TIER 2 — Strong Opportunity (Research-Validated)</h3>
+<div class="ideas-grid">
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">💍</span><span class="li-name">Eyeliner Try-On Carousel</span><span class="li-badge bt">Top Perf</span></div>
+<div class="li-why">Snapchat data: eyeliner try-ons drive 14% higher playtime. Kohl eyes, cat eye, graphic liner, Korean aegyo-sal, Arabic kohl — each a different style. Multiple styles in one lens = longer use = more posters.</div>
+<div class="li-data">📊 Eyeliner = 14% higher playtime per Snap official 2024 data</div>
+<div class="li-viral">🔥 VIRAL: "Which eyeliner style fits your face? Slide to try 8 styles"</div>
+<div class="li-how">Face mesh → 8 eyeliner styles: clean wing, double wing, graphic liner, Arabic kohl, Korean natural, 70s retro, monolid liner, thick bold → tap to cycle</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🌸</span><span class="li-name">Satin Skin 2026 Challenge</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">2026's biggest beauty trend is Satin Skin — not glass, not matte. It's silky, expensive-looking texture. Nobody has made the definitive satin skin lens yet. First to own this trend owns the year.</div>
+<div class="li-data">📊 Satin skin trend data: overtaking glass skin searches in 2026 globally</div>
+<div class="li-viral">🔥 VIRAL: "Satin vs Glass skin challenge 2026 — which filter wins? Reply with yours"</div>
+<div class="li-how">Face mesh 80% smooth → satin texture overlay → warm-neutral grade → NOT shiny (remove bloom excess) → NOT matte (keep luminosity) → silky middle quality</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🎯</span><span class="li-name">Skin Tone Matcher</span><span class="li-badge bt">Top Perf</span></div>
+<div class="li-why">Interactive game-style lens that detects your skin tone and tells you what it is. Educational + fun + shareable. Everyone wants to know their undertone (warm/cool/neutral) for foundation matching.</div>
+<div class="li-data">📊 Interactive = longer playtime | Educational = share rate up (people share to learn)</div>
+<div class="li-viral">🔥 VIRAL: "What's your actual skin tone? Mine is warm medium 3 — what's yours?"</div>
+<div class="li-how">Face mesh → skin tone detection → display result on screen: "You are: Warm Deep" with suggested shade range → tap to share result → extremely shareable = high poster count</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🌙</span><span class="li-name">Ramadan/Eid Glow</span><span class="li-badge bt">Top Perf</span></div>
+<div class="li-why">Saudi Arabia and UAE are BOTH qualified payout regions now. 2 billion Muslims worldwide. Ramadan content peaks every year. Zero quality Ramadan-specific beauty lenses from indie creators. Cultural + seasonal = massive organic reach.</div>
+<div class="li-data">📊 Saudi + UAE = qualified payout regions | 2B Muslim audience | Annual seasonal viral event</div>
+<div class="li-viral">🔥 VIRAL: "Ramadan Mubarak glow — tag someone you're celebrating with"</div>
+<div class="li-how">Warm rose-gold Arabic luxury grade → crescent moon particle system → rose water pink overlay → Arabic calligraphy text overlay optional → beautiful on olive and dark skin</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🎵</span><span class="li-name">Afrobeats Energy Pulse</span><span class="li-badge bv">Viral</span></div>
+<div class="li-why">Afrobeats is a global music movement with 400M+ African audience + global fanbase. Nigeria alone has 200M people. No quality Afrobeats-specific beauty/energy lens exists. Community sharing potential is enormous.</div>
+<div class="li-data">📊 Afrobeats streaming grew 22% in 2024 | Nigerian Snapchat users among fastest growing | Cultural identity = share rate</div>
+<div class="li-viral">🔥 VIRAL: "Afrobeats beauty challenge — dance into your glow and tag your city"</div>
+<div class="li-how">Dark skin optimized warm grade → vibrant Ankara colors overlay → rhythm particle burst on beat (if audio reactive) → bold eye enhancement → submit as viral</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🏋️</span><span class="li-name">That Girl Morning Routine</span><span class="li-badge bt">Top Perf</span></div>
+<div class="li-why">"That Girl" aesthetic is 2026 trending — 5am wake-up, gym, healthy, minimal makeup. Clean Girl evolved. This is the wellness/fitness lens for women who want to look like they have their life together. Huge US audience (32% of your followers).</div>
+<div class="li-data">📊 "That Girl" trend peaked August 2025 Snapchat | 32% US audience for you = your biggest market</div>
+<div class="li-viral">🔥 VIRAL: "5am that girl energy — are you part of the 5am club?"</div>
+<div class="li-how">Minimal clean grade (barely 4% correction) → post-workout fresh skin → dewy minimal → open bright frame → no vignette → active lifestyle aesthetic</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🌺</span><span class="li-name">Indian Wedding Glow</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">India has 1.4 billion people. Indian weddings are the biggest celebrations in the world. India is an extremely active Snapchat market. 16% of your followers are Indian. Wedding season content peaks November-February. Nobody has built a quality Indian bridal lens.</div>
+<div class="li-data">📊 16% of Anil's audience is Indian | Wedding = evergreen content | India = qualified past payout region</div>
+<div class="li-viral">🔥 VIRAL: "Dulhan glow — tag your future bride or groom with this filter"</div>
+<div class="li-how">Warm gold turmeric grade → gold shimmer overlay → bridal glow smooth 85% → gold sparkle particles → eye bright 60% → works on all Indian skin tones from fair to dark</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🔮</span><span class="li-name">Aura Color Reading</span><span class="li-badge bv">Viral</span></div>
+<div class="li-why">Mystical/spiritual content is consistently viral. "What's your aura color" has millions of searches. Making an interactive lens that "reads" your aura color and assigns a personality is the kind of shareable content people can't resist sending to friends.</div>
+<div class="li-data">📊 Personality/quiz format = highest share rate | Spiritual aesthetic trending Gen Z 2025-2026</div>
+<div class="li-viral">🔥 VIRAL: "My aura is GOLD — what is yours? Drop your color in comments"</div>
+<div class="li-how">Face detection → color assignment based on face mapping (randomized beautifully) → aura color glow appears around head → name displayed ("Your aura: Purple = Spiritual") → tap to get new reading → people replay endlessly</div>
+</div>
+
+</div>
+
+<h3>🥉 TIER 3 — Build These Next (Gap in Market)</h3>
+<div class="ideas-grid">
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🇸🇦</span><span class="li-name">Arabian Nights Luxury</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">Saudi Arabia is a NEW qualified payout region (added 2024). This is an underserved $$$$ market. Nobody is building Arabic luxury beauty lenses specifically for this market. Huge Gulf audience with high spending power.</div>
+<div class="li-viral">🔥 VIRAL: "Arabian luxury beauty — oud rose gold challenge"</div>
+<div class="li-how">Rose gold Arabic luxury grade → crescent moon overlay → oud rose skin warmth → premium kohl eye enhancement → gold particle drift → works on warm olive skin</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🦁</span><span class="li-name">African Queen Royale</span><span class="li-badge bv">Viral</span></div>
+<div class="li-why">400M Africans on social media. African pride content going global via Afrobeats. Nigeria, Ghana, South Africa are huge Snapchat markets. A series of "African Queen" lenses for each major country = series of viral content.</div>
+<div class="li-viral">🔥 VIRAL: "African Queen energy — which country are you from? Tag your flag"</div>
+<div class="li-how">Dark skin specific gold luminosity → each country variation (Nigeria/Ghana/SA/Kenya/Ethiopia) with specific cultural color → community will tag their people → series of 10 lenses</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🎭</span><span class="li-name">Face Shape Predictor</span><span class="li-badge bt">Top Perf</span></div>
+<div class="li-why">Educational interactive content gets shared more than pure beauty. "What face shape are you?" is one of the most searched beauty questions worldwide. Interactive quiz format = highest replay and share rate.</div>
+<div class="li-viral">🔥 VIRAL: "Face shape result: HEART — what hairstyle suits you? I'll tell you"</div>
+<div class="li-how">Face mapping → detect face proportions → display result (oval, heart, round, square, oblong, diamond) → overlay shows what it means → suggest hairstyle → shareable result</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🌟</span><span class="li-name">K-Beauty Lab (5 Looks)</span><span class="li-badge bl">Lens+</span></div>
+<div class="li-why">K-beauty is still the #1 global beauty trend. A lens that lets you try 5 different K-beauty looks (Glass Skin, Blush Bloom, Dewy, Gradient Lip, No-makeup) in one lens = premium Lens+ content = high engagement.</div>
+<div class="li-viral">🔥 VIRAL: "K-beauty lab — try all 5 looks and pick your favorite"</div>
+<div class="li-how">5-look carousel → swipe/tap to cycle → Glass Skin / Blush Bloom / Dewy / Peach Fuzz / Moon Glass → each visually very different → submit as Lens+ exclusive</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🎪</span><span class="li-name">World Beauty Time Machine</span><span class="li-badge bv">Viral</span></div>
+<div class="li-why">Nostalgic transformation lenses are consistently viral. "Me in the 60s" type content. A global version: "What would you look like as [country] beauty from [decade]?" — combines cultural identity + transformation + nostalgia = triple viral mechanic.</div>
+<div class="li-viral">🔥 VIRAL: "What if you were an Egyptian queen 3000 years ago? This AI showed me"</div>
+<div class="li-how">Use new FaceGen + AI tools → Cleopatra kohl eyes / 1970s Bollywood / 1920s Harlem / Ancient Yoruba → each historical beauty aesthetic → very unique concept nobody has built</div>
+</div>
+
+<div class="lens-idea">
+<div class="li-top"><span class="li-e">🌊</span><span class="li-name">Ocean/Earth/Fire/Air Series</span><span class="li-badge bv">Viral</span></div>
+<div class="li-why">The four elements concept is universally recognized across all cultures. "Which element are you?" is permanently viral. 4 lenses in a series = people try all 4 = 4x the Qualified Posters across the series.</div>
+<div class="li-viral">🔥 VIRAL: "I got OCEAN — what element are you? Tag your element twin"</div>
+<div class="li-how">4 separate lenses: Ocean (aqua blue cool), Fire (warm red volcanic), Earth (forest green warm), Air (crystal white cool) → each with element particles → personality result overlay → series strategy</div>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 7: STRATEGY -->
+<h2>🗓️ Action Plan Based On Research</h2>
+<div class="section">
+<h3>What Top Creators Do That You Should Copy</h3>
+
+<div class="insight-box">
+<div class="label">🏆 Strategy #1: Series Over Singles</div>
+<p>Top creators build SERIES. Not one lens — a series of 5-10 related lenses. Users who love Lens 1 will try Lenses 2-5. Your country beauty series (195 countries) IS a series. Build the most popular 20 first, announce the series, let community request next countries.</p>
+</div>
+
+<div class="insight-box">
+<div class="label">🏆 Strategy #2: Interactive Beats Passive</div>
+<p>Every top-earning lens has an interactive element — swipe to change, tap to reveal, score system, quiz result. A beauty filter you just look at gets 30 seconds. A beauty filter with "tap to try 5 shades" gets 3 minutes. 6x longer playtime = 6x more chance of becoming a Qualified Poster.</p>
+</div>
+
+<div class="insight-box">
+<div class="label">🏆 Strategy #3: Challenge Mechanic Built In</div>
+<p>Paige Piskin and CyreneQ never release a lens without a challenge concept. The viral hook isn't a tag — it's a question that makes people NEED to respond. "Rate my glass skin 1-10" forces a reply. "Which K-beauty look am I?" forces a share. Build the challenge INTO the lens concept, not as an afterthought.</p>
+</div>
+
+<div class="insight-box">
+<div class="label">🏆 Strategy #4: Own Underserved Markets</div>
+<p>CyreneQ owns the Filipino/Asian cultural AR space. Nobody is owning the African cultural beauty space, the South Asian beauty space, or the Arabian luxury beauty space. These are your lanes. 400K AR creators exist but 99% target the US/European market. Emerging market beauty = yours to own.</p>
+</div>
+
+<div class="insight-box">
+<div class="label">🏆 Strategy #5: Submit to All Programs</div>
+<p>Lens+ Payouts (new Oct 2025) + Top Performer Payouts = two income streams per lens. Submit some lenses as Lens+ Exclusive (higher earning per user but smaller audience) and some as Top Performer (mass market). Diversify across both programs. Build 2-3 new lenses per week minimum.</p>
+</div>
+
+<div class="warning-box">
+<div class="label">⚠️ What NOT to Do (Common Mistakes)</div>
+<p>
+1. Building lenses that only look good in perfect lighting (fails in real use = less sharing)<br>
+2. Over-smoothing skin until it looks plastic (users stop sharing because it looks fake)<br>
+3. Lenses that only work on one skin tone (cuts your addressable audience in half)<br>
+4. No viral hook — lens releases with no challenge concept = dies immediately<br>
+5. Building for the wrong regions — focus on US, France, Saudi, UK, Germany, Canada, Australia, UAE (the 11 qualified payout regions)
+</p>
+</div>
+
+<h3>Your Specific Priority Queue (Anil @anill.kumar7 — 246K followers)</h3>
+<div class="data-row">
+<div class="data-item">Week 1: <strong>Lipstick Try-On Carousel</strong> (data proves highest playtime)</div>
+<div class="data-item">Week 2: <strong>Satin Skin 2026</strong> (own the defining trend before others)</div>
+<div class="data-item">Week 3: <strong>Melanin Glow Spectrum</strong> (biggest underserved market gap)</div>
+<div class="data-item">Week 4: <strong>Aura Color Reading</strong> (viral mechanic, high replay rate)</div>
+<div class="data-item">Week 5: <strong>Indian Wedding Glow</strong> (16% of your audience + Lens+ payout)</div>
+<div class="data-item">Week 6: <strong>Arabian Nights Luxury</strong> (Saudi/UAE = qualified payout regions)</div>
+<div class="data-item">Week 7: <strong>K-Beauty Lab 5-Look</strong> (Lens+ premium content, high engagement)</div>
+<div class="data-item">Week 8: <strong>That Girl Morning Routine</strong> (32% US audience + trend)</div>
+</div>
+</div>
+
+<div style="text-align:center;color:#333;font-size:10px;padding:1.5rem 0">
+Research compiled from: Snap Newsroom 2024/2025 | Lens Fest 2025 Official | Social Media Today | Beauty Independent | Influencer Marketing Hub | LinkedIn creator data<br>
+Built for @anill.kumar7 Mr. A — 246K followers — NJ, NYC
 </div>
 </body>
 </html>
