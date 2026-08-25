@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. A — Snap Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF7F0;
+    --paper: #FFFFFF;
+    --ink: #241D2E;
+    --muted: #8A8194;
+    --gold: #E8A33D;
+    --coral: #F2704A;
+    --violet: #7C6CF0;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{ background:var(--cream); }
+  body{
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display:flex;
+    justify-content:center;
+    padding: 36px 16px 48px;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  .glow{ position:fixed; border-radius:50%; filter:blur(100px); opacity:0.30; z-index:0; pointer-events:none; }
+  .glow-1{ width:420px; height:420px; background:var(--coral); top:-160px; left:-140px; }
+  .glow-2{ width:380px; height:380px; background:var(--violet); bottom:-140px; right:-120px; }
+  .glow-3{ width:300px; height:300px; background:var(--gold); top:45%; left:65%; opacity:0.22; }
+
+  .page{ width:100%; max-width: 640px; position:relative; z-index:2; }
+
+  .storybar{ display:flex; gap:5px; margin-bottom: 28px; }
+  .storybar span{ flex:1; height:3px; border-radius:2px; background: rgba(36,29,46,0.08); }
+  .storybar span.done{ background: linear-gradient(90deg, var(--gold), var(--coral)); }
+
+  .hero{ text-align:center; margin-bottom: 26px; }
+  .avatar{
+    width: 92px; height: 92px; border-radius: 50%;
+    margin: 0 auto 16px;
+    background: conic-gradient(from 180deg, var(--gold), var(--coral), var(--violet), var(--gold));
+    padding: 3px;
+    box-shadow: 0 8px 24px rgba(242,112,74,0.20);
+  }
+  .avatar-inner{
+    width:100%; height:100%; border-radius:50%;
+    background: var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size: 30px; font-weight:600;
+    background-clip:text; -webkit-background-clip:text; color:transparent;
+    background-image: linear-gradient(135deg, var(--coral), var(--violet));
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight: 700;
+    font-size: 38px;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .handle{
+    font-family:'Space Mono', monospace;
+    font-size: 12.5px;
+    color: var(--coral);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .bio{
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0 auto 14px;
+  }
+  .meta-row{
+    display:flex; justify-content:center; gap: 16px; flex-wrap:wrap;
+    font-size: 12.5px; color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .badge-row{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .collab-badge{
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(232,163,61,0.12); border:1px solid rgba(232,163,61,0.45);
+    color:#9A6A1E; font-family:'Space Mono',monospace; font-size:11px;
+    letter-spacing:0.5px; padding:7px 16px; border-radius:20px; text-transform:uppercase;
+  }
+  .email-badge{
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(242,112,74,0.10); border:1px solid rgba(242,112,74,0.35);
+    color:#C24E2C; font-family:'Space Mono',monospace; font-size:11px;
+    letter-spacing:0.3px; padding:7px 16px; border-radius:20px;
+    text-decoration:none;
+  }
+
+  .stats{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    margin: 26px 0;
+  }
+  .stat{
+    background: var(--paper);
+    border: 1px solid rgba(36,29,46,0.07);
+    border-radius: 16px;
+    padding: 16px 8px;
+    text-align:center;
+    box-shadow: 0 2px 10px rgba(36,29,46,0.04);
+  }
+  .stat .num{ font-family:'Fraunces', serif; font-size: 21px; font-weight:600; color: var(--ink); }
+  .stat .label{ font-size: 10.5px; color: var(--muted); text-transform:uppercase; letter-spacing: 0.6px; margin-top:3px; }
+
+  .grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin-top: 26px;
+  }
+  .tile{
+    display:flex; flex-direction:column; gap:12px;
+    background: var(--paper);
+    border: 1px solid rgba(36,29,46,0.07);
+    border-radius: 18px;
+    padding: 18px;
+    text-decoration:none;
+    color: var(--ink);
+    box-shadow: 0 2px 10px rgba(36,29,46,0.04);
+    transition: border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  }
+  .tile:hover{
+    border-color: rgba(242,112,74,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(242,112,74,0.12);
+  }
+  .tile-icon{
+    width: 40px; height:40px; border-radius: 12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 18px;
+  }
+  .tile-icon.gold{ background: rgba(232,163,61,0.14); color: #9A6A1E; }
+  .tile-icon.coral{ background: rgba(242,112,74,0.14); color: #C24E2C; }
+  .tile-text .title{ font-weight:600; font-size: 14.5px; }
+  .tile-text .sub{ font-size: 11.5px; color: var(--muted); margin-top:3px; line-height:1.4; }
+
+  footer{
+    text-align:center; margin-top: 30px;
+    font-family:'Space Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  footer .dot{ width:4px; height:4px; border-radius:50%; background: var(--gold); }
+
+  @media (max-width: 420px){
+    .grid{ grid-template-columns: 1fr; }
+  }
+</style>
+<!-- Snap Pixel Code -->
+<script type='text/javascript'>
+(function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+{a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+r.src=n;var u=t.getElementsByTagName(s)[0];
+u.parentNode.insertBefore(r,u);})(window,document,
+'https://sc-static.net/scevent.min.js');
+
+snaptr('init', 'e030630c-6383-47d9-813b-715f4c71eb9a');
+
+snaptr('track', 'PAGE_VIEW');
+</script>
+<!-- End Snap Pixel Code -->
+</head>
+<body>
+
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+<div class="glow glow-3"></div>
+
+<div class="page">
+
+  <div class="storybar">
+    <span class="done"></span><span class="done"></span><span class="done"></span><span></span>
+  </div>
+
+  <div class="hero">
+    <div class="avatar"><div class="avatar-inner">A</div></div>
+    <h1>Mr. A</h1>
+    <div class="handle">@anill.kumar7</div>
+    <p class="bio">Daily aesthetic snaps, moody light, and lenses built for how you actually see the city. Indian-born, NJ/NYC based for 3+ years.</p>
+    <div class="meta-row">
+      <span>📍 New Jersey · NYC</span>
+      <span>6+ years creating</span>
+    </div>
+    <div class="badge-row">
+      <span class="collab-badge">✦ Available for collabs</span>
+      <a class="email-badge" href="mailto:mra7official@gmail.com">✉️ mra7official@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">249K</div><div class="label">Followers</div></div>
+    <div class="stat"><div class="num">6+</div><div class="label">Years</div></div>
+    <div class="stat"><div class="num">★</div><div class="label">Snap Creator</div></div>
+  </div>
+
+  <div class="grid">
+
+    <a class="tile" href="https://www.snapchat.com/add/anill.kumar7" target="_blank" rel="noopener">
+      <div class="tile-icon gold">👻</div>
+      <div class="tile-text">
+        <div class="title">Snapchat</div>
+        <div class="sub">Daily Aesthetic Snaps · Stories & Spotlight</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.instagram.com/anill.kumar7" target="_blank" rel="noopener">
+      <div class="tile-icon coral">📷</div>
+      <div class="tile-text">
+        <div class="title">Instagram</div>
+        <div class="sub">@anill.kumar7</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.snapchat.com/add/anill.kumar7" target="_blank" rel="noopener">
+      <div class="tile-icon gold">🎬</div>
+      <div class="tile-text">
+        <div class="title">Spotlight videos</div>
+        <div class="sub">Cinematic city & sky clips</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.snapchat.com/add/anill.kumar7" target="_blank" rel="noopener">
+      <div class="tile-icon gold">✨</div>
+      <div class="tile-text">
+        <div class="title">Browse my Lenses</div>
+        <div class="sub">Published AR lenses on Snapchat</div>
+      </div>
+    </a>
+
+  </div>
+
+  <footer>
+    <span class="dot"></span> 6+ years creating on Snapchat
+  </footer>
+
+</div>
+</body>
+</html>
